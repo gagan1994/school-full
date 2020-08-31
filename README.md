@@ -9,7 +9,7 @@
 ## Web App
  
  - IDE: Brackets
- - Web : React , Bootstrap, Jquery
+ - Web : React , Bootstrap
  
 ##### Set up
  Create React Project by below steps and create app folder below src and move all app realted files. 
