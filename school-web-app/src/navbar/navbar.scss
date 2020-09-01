@@ -1,0 +1,71 @@
+@import '../SASS/main.scss';
+
+.wave-class{
+    height: 50px;
+    width: 100%;
+    background-color: black;
+}
+
+.nav-bar-style{
+    background-color: $primaryColor;
+    font-family: $font-nav;
+    font-size: $font-size-nav-bar;
+
+}
+.full-col{
+    margin: auto;
+    padding: 0px; 
+}
+.container-fluid{
+    padding: 0px;
+    display: block;
+
+}
+.nav-bar-container{
+    padding: 0;
+}
+
+.img-sm-logo{
+    width: 50px;
+    margin: $default-margin;
+    @include centerCrop()
+        }
+
+.nav-list-items{
+    list-style-type: none;
+    padding: 0;
+    margin: auto;
+    margin-left: 10px;
+}
+.nav-list-item{
+    margin: auto;
+    display: inline-block; 
+    margin:  $default-margin;
+}
+.nav-item{
+    color: $primaryTextColor;
+    text-decoration: none;
+} 
+
+.nav-list-item  a:hover{
+    color: lighten($primaryTextColor,50%);
+    text-decoration: none;
+} 
+
+@media screen and (max-width: 680px) {
+  body {
+    background-color: blue;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
