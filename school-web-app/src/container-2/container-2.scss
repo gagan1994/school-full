@@ -1,0 +1,65 @@
+@import '../SASS/main.scss';
+
+.title__line {
+    color: #444444;
+    font-size: 44px;
+    line-height: 33px;
+    margin-bottom: 23px;
+    padding-bottom: 45px;
+    position: relative;
+    font-family: $font-dosis;
+    font-weight: 700;
+}
+.title__line::before {
+    background: rgba(0, 0, 0, 0) url(https://d29u17ylf1ylz9.cloudfront.net/junior/images/icons/title.png) no-repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 14px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 300px;
+}
+.section__title p {
+    color: #777777;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    padding: 0 22%;
+}
+
+.jn__welcome__wrapper .welcome__juniro__inner h3 {
+    color: #333333;
+    font-size: 44px;
+    font-weight: 400;
+    margin-bottom: 13px;
+    font-family: "Dosis", sans-serif;
+}
+.wel__btn h4{
+    margin-top: 20px;
+    @extend .home-img-contents;
+    font-size: $font-medium;
+    @include border-rad(5px);
+    color: white;
+}
+.jn__welcome__wrapper .welcome__juniro__inner p {
+    color: #777777;
+    font-size: 15px;
+    line-height: 27px;
+    padding-right: 7%;
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 767px){
+    .section__title p {
+        font-size: 14px;
+        line-height: 24px;
+        padding: 0 5%;
+    }    
+}
