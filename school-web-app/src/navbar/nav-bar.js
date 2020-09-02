@@ -7,10 +7,10 @@ class SchoolNavbar extends Component {
         this.onBtnClick=this.onBtnClick.bind(this);
     }
 
-    onBtnClick=(item)=>{
+    onBtnClick=(item,id)=>{
         var btnContainer = document.getElementById("nav-items");
 
-        var btn = document.getElementById(item);
+        var btn = document.getElementById(item+"-"+id);
 
         // Get all buttons with class="btn" inside the container
         var btns = document.getElementsByClassName("nav-item");
@@ -20,7 +20,11 @@ class SchoolNavbar extends Component {
             btns[i].className = btns[i].className.replace(" active", "");
         }
         btn.className+= " active";
-
+        
+        var id =  document.getElementById('#'+id);
+        if(id){
+            id.scrollIntoView();
+        }
     }
 
 
@@ -40,17 +44,20 @@ class SchoolNavbar extends Component {
 
                 <div class="navbar-collapse collapse  order-1 order-md-0 dual-collapse2">
                     <ul class="navbar-nav mr-auto"id="nav-items">
-                        <li class="nav-item active" id="navbtn-home"  onClick={(() => this.onBtnClick("navbtn-home"))}>
-                            <a class="nav-link" href="#"  onClick={(() => this.onBtnClick("navbtn-home"))}>Home</a>
+                        <li class="nav-item active" id="navbtn-home"  onClick={(() => this.onBtnClick("navbtnmhome"))}>
+                            <a class="nav-link" href="#"  onClick={(() => this.onBtnClick("navbtn","home"))}>Home</a>
                         </li>
                         <li class="nav-item" id="navbtn-events">
-                            <a class="nav-link " href="#" onClick={(() => this.onBtnClick("navbtn-events"))}>Events</a>
+                            <a class="nav-link " href="#events" onClick={(() => this.onBtnClick("navbtn","events"))}>Events</a>
                         </li>
                         <li class="nav-item" id="navbtn-gallery">
-                            <a class="nav-link" href="#" onClick={(() => this.onBtnClick("navbtn-gallery"))}>Gallery</a>
+                            <a class="nav-link" href="#gallery" onClick={(() => this.onBtnClick("navbtn","gallery"))}>Gallery</a>
                         </li>
-                        <li class="nav-item" id="navbtn-about">
-                            <a class="nav-link" href="#" onClick={(() => this.onBtnClick("navbtn-about"))}>About</a>
+                        <li class="nav-item" id="navbtn-blogs">
+                            <a class="nav-link" href="#blogs" onClick={(() => this.onBtnClick("navbtn","blogs"))}>Blogs</a>
+                        </li>  
+                        <li class="nav-item" id="navbtn-contact">
+                            <a class="nav-link" href="#contact" onClick={(() => this.onBtnClick("navbtn","contact"))}>Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -65,7 +72,7 @@ class SchoolNavbar extends Component {
                             <a class="nav-link" href="#">|</a>
                         </li>  
                         <li class="nav-item">
-                        <a class="nav-link" href="#">LogIn</a>
+                            <a class="nav-link" href="#">LogIn</a>
                         </li>
                     </ul>
                 </div>

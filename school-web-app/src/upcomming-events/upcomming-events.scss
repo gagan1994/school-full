@@ -1,0 +1,102 @@
+@import '../SASS/main.scss';
+
+.container-3-sub{
+}
+.upcomming__event {
+    margin-left: 120px;
+    margin-top: 40px;
+    position: relative;
+}
+.upcomming__event .upcomming__inner {
+    left: 54px;
+    position: absolute;
+    top: 37px;
+}
+.upcomming__event .upcomming__thumb img {
+    width: 100%;
+}
+.upcomming__event .upcomming__inner p {
+    margin-bottom: 24px;
+    padding-right: 10%;
+}
+.upcomming__event .upcomming__inner .event__time {
+    margin-left: -27px;
+    text-align: center;
+}
+.upcomming__event .upcomming__inner .event__time li i {
+    border: 1px solid #777777;
+    border-radius: 100%;
+    color: #777777;
+    display: block;
+    font-size: 22px;
+    height: 45px;
+    line-height: 42px;
+    margin: auto auto 9px;
+    padding-right: 0;
+    text-align: center;
+    width: 45px;
+}
+.upcomming__event .upcomming__inner .event__time {
+    margin-left: -27px;
+    text-align: center;
+}
+.upcomming__event .upcomming__inner .event__time li + li {
+    margin-top: 12px;
+}   
+.upcomming__event .event__occur {
+    left: -27%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.upcomming__event .event__occur .enent__pub {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.upcomming__event .event__occur .enent__pub {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.upcomming__event .event__occur .enent__pub span.time {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.upcomming__event .event__occur .enent__pub span {
+    color: #89d700;
+    display: block;
+}
+.upcomming__event .upcomming__inner h6 a {
+    color: #444444;
+    display: inline-block;
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    position: relative;
+    transition: 0.3s;
+    font-family: "Dosis", sans-serif;
+    text-decoration: none;
+    &:hover{
+        color: $img-btn-color;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .upcomming__event {
+        margin-left: 0;
+    }    
+    .upcomming__event .event__occur {
+        top: 68%;
+    }
+    .upcomming__event .event__occur {
+    left: 6%;
+}
+}
+

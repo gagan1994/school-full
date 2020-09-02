@@ -1,7 +1,3 @@
-h1,body,html,h{
-    margin: 0;
-    padding: 0;
-}
 
 .dummyClass{
     width: 100%;
@@ -20,6 +16,13 @@ h1,body,html,h{
         color: darken($img-btn-text-color,10%);
         background: darken($img-btn-color,10%);
     }
+}
+
+.invissible-class{
+    display: none;
+}
+.vissible-class{
+    
 }
 
 @media screen and (max-width: 600px) {

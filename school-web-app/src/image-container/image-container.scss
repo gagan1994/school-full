@@ -4,15 +4,16 @@
     width: 100%;
 }
 
-img{
-    vertical-align: top;
-}
 
 .box-left-mini{
     float:left;
     width:100%;
     height: 80%;
 }
+.front img{
+    vertical-align: top;
+}
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -21,6 +22,7 @@ img{
 .box-left-mini .front {
     display: block;
     z-index: 5;
+    margin: 0;
     position: relative;
 }
 .box-left-mini .front span {

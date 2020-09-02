@@ -1,0 +1,52 @@
+@import '../SASS/main.scss';
+
+.title__line::before {
+    background: rgba(0, 0, 0, 0) url(https://d29u17ylf1ylz9.cloudfront.net/junior/images/icons/title.png) no-repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 14px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 300px;
+}
+
+.title__line__dark::before{
+    background: rgba(0, 0, 0, 0) url(https://d29u17ylf1ylz9.cloudfront.net/junior/images/icons/title.png) no-repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 14px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 300px;
+}
+
+.title__line__dark {
+    color: #444444;
+    font-size: 44px;
+    line-height: 33px;
+    margin-bottom: 23px;
+    padding-bottom: 45px;
+    position: relative;
+    font-family: $font-dosis;
+    font-weight: 700;
+}
+
+.section__title__dark p{
+    color: #777777;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    padding: 0 22%;
+}
+
+.section__title p {
+    @extend .section__title__dark;
+    color: #F2F4F4;
+}
+.title__line {
+    @extend .title__line__dark;
+    color: #F4F6F6;
+
+}
