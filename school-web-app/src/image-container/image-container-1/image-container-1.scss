@@ -1,0 +1,33 @@
+@import '../image-container.scss';
+
+.corosel-contents h1{
+    @extend .home-img-contents;
+    @include border-rad(2px);
+    font-size: $font-x-large;
+}
+
+.corosel-contents h2{
+    margin-top: 1px;
+    font-size: $font-large;
+    @include border-rad(2px);
+    @extend .home-img-contents;
+}
+.corosel-contents h3{
+    margin-top: 20px;
+    @extend .home-img-contents;
+    font-size: $font-medium;
+    @include border-rad(5px);
+}
+.bg-pngimage--1 {
+    background-image: url(https://d29u17ylf1ylz9.cloudfront.net/junior/images/bg-png/1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 500px;
+}
+
+@media screen and (max-width: 680px) {
+    .bg-pngimage--1{
+        height: 250px;
+    }
+}

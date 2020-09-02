@@ -1,0 +1,46 @@
+@import '../SASS/main.scss';
+
+.owl-item{
+    width: 100%;
+}
+
+img{
+    vertical-align: top;
+}
+
+.box-left-mini{
+    float:left;
+    width:100%;
+    height: 80%;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.box-left-mini .front {
+    display: block;
+    z-index: 5;
+    position: relative;
+}
+.box-left-mini .front span {
+    background: #fff;
+}
+
+.box-left-mini .behind_container {
+    background-color: #ff0;
+    position: relative;
+    top: -20px;
+}
+.box-left-mini .behind {
+    display: block;
+    z-index: 3;
+}
+
+.carosel-containers {
+    padding-top:40px;
+    padding-left: 10px;
+}
+.corosel-contents{
+    margin-left: 20px;
+}
