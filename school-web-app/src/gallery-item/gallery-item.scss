@@ -1,0 +1,57 @@
+@import '../SASS/main.scss';
+/*https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-1300x500.jpeg*/
+#demo {
+    height:100%;
+    position:relative;
+    overflow:hidden;
+}
+.container-4{
+    background-image: url(https://png.pngtree.com/thumb_back/fh260/back_pic/00/04/53/9556248b4747950.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding-top: 5%;
+}
+
+.green{
+    background-color:#6fb936;
+}
+.thumb{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.page-top{
+    margin-top:85px;
+}
+
+
+img.zoom {
+    width: 90%;
+    height: 200px;
+    border-radius:5px;
+    object-fit:cover;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+  
+    &:hover {
+        -webkit-transform: scale(1.2); 
+        -moz-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        transform: scale(1.2);
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+.modal-header {
+    border-bottom: none;
+}
+.modal-title {
+    color:#000;
+}
+.modal-footer{
+    display:none;  
+}

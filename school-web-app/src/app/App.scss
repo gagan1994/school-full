@@ -4,3 +4,28 @@
     color: #777777;
     overflow: hidden;
 }
+.scroll-up-btn{
+    position: fixed;
+    z-index: 2147483647;
+}
+
+
+a#scrollUp {
+    background: #ffffff;
+    color: #303030;
+    bottom: 40px;
+    right: 40px;
+    border-radius: 100px;
+    height: 45px;
+    width: 45px;
+    font-size: 25px;
+    text-align: center;
+    padding: 2px 0;
+    box-shadow: 0 0 15px 0px rgba(50, 50, 50, 0.2);
+    &:hover{
+        background: $img-btn-color;
+        color: white;
+
+    }
+
+}
