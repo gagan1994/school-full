@@ -2,10 +2,11 @@ import React,{Component} from 'react';
 import './container-3.scss';
 import ContentHeader from '../content-header/content-header.js';
 import UpcommingEventsItem from '../upcomming-events/upcomming-event-item.js';
-import LocalDb from '../local-db/local-db.js';
 
 import EventsItem from './events-item.js';
 
+
+import LocalDb from '../local-db/local-db.js';
 let localDb = new LocalDb();
 
 class Container3 extends Component {

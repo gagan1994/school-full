@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import './container-4.scss';
 import GalleryItem from '../gallery-item/gallery-item.js';
 import ContentHeader from '../content-header/content-header.js';
 
@@ -23,7 +22,8 @@ class Container4 extends Component {
     render(){
         return (
             <div className="container-4" id="#gallery">
-                <ContentHeader title="Our Gallery" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunte magna aliquaet, consectetempora incidunt">
+                <ContentHeader title="Our Gallery" 
+                    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunte magna aliquaet, consectetempora incidunt">
                 </ContentHeader>
                 <div class="row">
                     {this.galleryItems()}

@@ -19,6 +19,9 @@ a{
     color: #444;
     text-decoration: none;
     transition: 0.3s;
+    &:hover{
+        color: $img-btn-color;
+    }
 }
 
 ul{
@@ -28,4 +31,9 @@ p {
     color: #777777;
 }
 
-
+.invisible-items{
+    display: none;
+}
+.vissible-items{
+    display: block;
+}

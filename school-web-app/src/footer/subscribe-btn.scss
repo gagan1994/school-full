@@ -13,6 +13,7 @@
 .bg__cat--3 {
     background: #2f85d8;
     margin-top: 50px;
+    z-index: 1;
 }
 .subscribe__inner {
     padding: 30px 0 40px;
@@ -75,7 +76,6 @@
     }
 }
 @media only screen and (max-width: 767px){
-
     .htc__news__inner {
         padding: 0;
     }

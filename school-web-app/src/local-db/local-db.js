@@ -1,5 +1,6 @@
 
 let instance = null;
+var accessToken=null;
 class LocalDb{
     constructor(){
         if(!instance){
@@ -7,7 +8,12 @@ class LocalDb{
         }
         return instance;
     }
-
+    getAccessToken = () =>{
+        return accessToken;
+    } 
+    setAccessToken = (token) =>{
+        accessToken=token;
+    }
     getEventsList = () => {
         return [
             {
@@ -71,7 +77,7 @@ class LocalDb{
                 imgUrl:"https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" ,
                 hrefLink:"https://images.pexels.com/photos/62307/air-bubbles-diving-underwater-blow-62307.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" 
             },
-{
+            {
                 imgUrl:"https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" ,
                 hrefLink:"https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" 
             },
@@ -103,24 +109,43 @@ class LocalDb{
         ];
     }
 
+    getBlogsList =()=>{
+        return[
+            {
+                id:"1",
+                date:"10",
+                monthYear:"November, 2017",
+                imgUrl:"https://d29u17ylf1ylz9.cloudfront.net/junior/images/blog/md-img/1.jpg",
+                title_sub1:"Children Blog : Post By Ariana",
+                title:"Basic Knowledge About Drawing",
+                description:"Lorem ipsum dolor sit amet, consectetur ad modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+                commment_count:"04",
+                likesCount:"02"
+            },
+            {
+                id:"2",
+                date:"26",
+                monthYear:"October, 2017",
+                imgUrl:"https://d29u17ylf1ylz9.cloudfront.net/junior/images/blog/md-img/2.jpg",
+                title_sub1:"Children Blog : Post By Jonson",
+                title:"Study Tour",
+                description:"Lorem ipsum dolor sit amet, consectetur ad modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+                commment_count:"05",
+                likesCount:"07"
+            },
+            {
+                id:"3",
+                date:"25",
+                monthYear:"May, 2018",
+                imgUrl:"https://d29u17ylf1ylz9.cloudfront.net/junior/images/blog/md-img/3.jpg",
+                title_sub1:"Children Blog : Post By Michel Jack",
+                title:"Childrens Day",
+                description:"Lorem ipsum dolor sit amet, consectetur ad modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+                commment_count:"01",
+                likesCount:"06"
+            }
+        ];
+    }
+
 }
 export default LocalDb;
-/*
-
-
-
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a href="" class="fancybox" rel="ligthbox">
-                            <img  src="https://images.pexels.com/photos/56005/fiji-beach-sand-palm-trees-56005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="zoom img-fluid "  alt=""/>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a href="" class="fancybox" rel="ligthbox">
-                            <img  src="https://images.pexels.com/photos/1038002/pexels-photo-1038002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="zoom img-fluid "  alt=""/>
-                        </a>
-                    </div>
-
-
-
-*/
