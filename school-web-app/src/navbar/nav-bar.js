@@ -24,6 +24,9 @@ class SchoolNavbar extends Component {
         ns.removeObserver(NOTIF_LOGIN_STATUS_CHANGE,this);
 
     }
+    
+    
+    
     onBtnClick=(item,id)=>{
         var btnContainer = document.getElementById("nav-items");
 

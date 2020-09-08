@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './container-2.scss';
 import ContentHeader from '../content-header/content-header.js';
+import { Router, Link } from "react-router-dom";
 
 class Container2 extends Component {
     render(){
@@ -15,7 +16,9 @@ class Container2 extends Component {
                             <h3>Welcome to Our School</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisic ming elit, sed do ei Excepteur sint occaecat cupida proident, sunt in culpa qui dese runt mol anim id est lai aborum. Sed ut perspiciatis unde omnis iste natus error svolupt accu doloremque laudantium, totam rem.</p>
                             <div class="wel__btn">
-                                <h4>Read More</h4>
+                                <Link to='/about'>  
+                                    <h4>Read More</h4>
+                                </Link>
                             </div>
                         </div>
                     </div>
