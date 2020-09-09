@@ -1,0 +1,33 @@
+
+.dummyClass{
+    width: 100%;
+    height: 100px;
+    background: black;
+}
+
+.home-img-contents{
+    background: $img-btn-color;
+    color: $img-btn-text-color;
+    display: inline-block;
+    font-family: $font-nav;
+    padding: 13px 30px;
+    white-space: nowrap;
+    &:hover{
+        color: darken($img-btn-text-color,10%);
+        background: darken($img-btn-color,10%);
+    }
+}
+
+.invissible-class{
+    display: none;
+}
+.vissible-class{
+    
+}
+
+@media screen and (max-width: 600px) {
+    .no-mobile-view{
+        display: none;
+    }
+}
+

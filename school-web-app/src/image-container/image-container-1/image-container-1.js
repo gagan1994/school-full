@@ -2,9 +2,15 @@ import React,{Component} from 'react';
 import './image-container-1.scss';
 
 class ImageContainer1 extends Component {
+
+    constructor(props){
+        super(props);
+    
+    }
+
     render(){
         return(
-            <div className="bg-pngimage--1  carosel-containers">
+            <div style={{backgroundImage : `url(${this.props.uri})`}} className="bg-pngimage--1  carosel-containers">
                 <div className="row">
                     <div className="col-lg-8 col-sm-6 corosel-contents">
                         <h1>
@@ -34,7 +40,6 @@ class ImageContainer1 extends Component {
                     <div className="col">
                     </div>
                 </div>
-
             </div>
         )
     }

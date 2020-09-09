@@ -7,10 +7,10 @@ class ContentHeader extends Component {
     }
     render(){
         return(
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class={this.props.isLightTheme?"section__title text-center":"section__title__dark text-center"}>
-                        <h2 class={this.props.isLightTheme?"title__line":"title__line__dark"}>{this.props.title}</h2>
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className={this.props.isLightTheme?"section__title text-center":"section__title__dark text-center"}>
+                        <h2 className={this.props.isLightTheme?"title__line":"title__line__dark"}>{this.props.title}</h2>
                         <p className={this.props.description? "vissible-class":"invissible-class"}>{this.props.description}</p>
                     </div>
                 </div>

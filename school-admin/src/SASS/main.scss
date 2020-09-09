@@ -1,0 +1,50 @@
+@import "variables";
+@import "mixins";
+@import "extends";  
+
+html{
+    scroll-behavior: smooth;
+}
+
+h1,body,html,h{
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    background-color: white;
+    font-size: 14px;
+}
+a{
+    color: #444;
+    text-decoration: none;
+    transition: 0.3s;
+    &:hover{
+        color: $img-btn-color;
+    }
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+p {
+    color: #777777;
+}
+
+.invisible-items{
+    display: none;
+}
+.vissible-items{
+    display: block;
+}
+.topMargin{
+    margin-top: $default-margin;
+}
+.margin-sm{
+    margin: 5px;
+}
+.margin-xl{
+    margin: 2rem    ;
+}

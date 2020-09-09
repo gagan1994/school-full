@@ -84,13 +84,12 @@ class Home extends Component{
 
         <ImageContainer>
         </ImageContainer>
-        <Container2/>
         <Container3/>
         <Container4/>
         <Container5/>
         <Footer/>
         <a id="scrollUp" className="scroll-up-btn"href="#top" >
-          <i class="fa fa-angle-up">
+          <i className="fa fa-angle-up">
           </i></a>
       </div>
     );

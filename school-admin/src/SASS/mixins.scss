@@ -1,0 +1,32 @@
+@mixin border($shadow,$border)
+{
+  --webkit-box-shadow: $shadow;
+  --moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+  border: $border;
+}
+
+
+@mixin border-rad($rad)
+{
+  --webkit-border-radius: $rad;
+  --moz-border-radius: $rad;
+  border-radius: $rad;
+}
+
+@mixin circleShape($width){
+  width: $width;
+  height: $width;
+  @include border-rad(50%);
+}
+@mixin centerCrop(){
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+@mixin navBorderBottom{
+  -webkit-box-shadow: 0px 9px 21px -10px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 9px 21px -10px rgba(0,0,0,1);
+  box-shadow: 0px 9px 21px -10px rgba(0,0,0,1);
+}
