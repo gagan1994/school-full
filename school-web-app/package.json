@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "metro": "^0.81.0",
     "node-sass": "^4.14.1"
   }
 }
