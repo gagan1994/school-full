@@ -2,10 +2,12 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_flutter/res/ui.dart';
 import 'package:school_flutter/splash/LogInPage.dart';
 
 import 'home/home_page.dart';
 import 'repo/auth.dart';
+import 'res/color/color_scheme.dart';
 import 'splash/splash_page.dart';
 
 void main() {
@@ -48,8 +50,22 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp.router(
             title: 'Flutter Demo',
-            theme: FlexThemeData.light(scheme: FlexScheme.materialBaseline),
-            darkTheme: FlexThemeData.dark(scheme: FlexScheme.materialBaseline),
+            theme: FlexThemeData.light(
+              fontFamily: fontFamily,
+              textTheme: textTheme,
+              scheme: FlexScheme.materialBaseline,
+              colors: FlexSchemeColor(
+                primary: primaryColor,
+                secondary: secondaryColor,
+              ),
+            ),
+            darkTheme: FlexThemeData.dark(
+              scheme: FlexScheme.materialBaseline,
+              colors: FlexSchemeColor(
+                primary: primaryColor,
+                secondary: secondaryColor,
+              ),
+            ),
             themeMode: ThemeMode.system,
             routerConfig: _router));
   }

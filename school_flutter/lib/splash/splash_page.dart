@@ -3,7 +3,11 @@ import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:school_flutter/home/home_page.dart';
+import 'package:school_flutter/res/assets.dart';
 import 'package:school_flutter/splash/LogInPage.dart';
+
+import '../res/color/color_scheme.dart';
+import '../res/constants.dart';
 
 class SplashPage extends StatefulWidget {
   static const PAGE_NAME = "SplashPage";
@@ -14,7 +18,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-  String appName = "";
   late final GifController controller;
   @override
   void initState() {
@@ -27,13 +30,13 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff008F99),
+      backgroundColor: primaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Gif(
-              image: AssetImage("assets/gif/logo.gif"),
+              image: AssetImage(splash_gif),
               controller:
                   controller, // if duration and fps is null, original gif fps will be used.
               //fps: 30,
@@ -58,7 +61,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   void checkLoginStatusAndNavigate() async {
     await Future.delayed(Duration(seconds: 2));
-    bool isAuth = 1 / 1 == 1;
+    bool isAuth = 2 / 1 == 1;
     if (isAuth) {
       context.go(MyHomePage.PAGE_NAME);
       print("going to page: " + MyHomePage.PAGE_NAME);
