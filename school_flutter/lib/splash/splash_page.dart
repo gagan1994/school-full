@@ -68,7 +68,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     bool isAuth = FirebaseAuth.instance.currentUser != null;
-    if (isAuth) {
+    if (false) {
       GoRouter.of(context).goNamed(MyHomePage.PAGE_NAME);
       print("going to page: " + MyHomePage.PAGE_NAME);
     } else {

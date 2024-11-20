@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
 from user_route import router as user_route
+from fastapi import Depends, HTTPException, status
 
 import firebase_admin
 
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from config import settings
+from config import get_firebase_user_from_token
 
 
 
@@ -37,5 +39,9 @@ def shutdown_db_client():
 async def root():
     print("Current App Name:", default_app.name)
     return {"message": "Welcome to the PyMongo tutorial!"}
+
+@app.get("/user_login")
+async def user_login(user = Depends(get_firebase_user_from_token)):
+    return {"msg":"Hello, user","uid":user['uid']} 
 
 app.include_router(user_route, tags=["users"], prefix="/users")

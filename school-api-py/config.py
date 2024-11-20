@@ -23,17 +23,20 @@ def get_firebase_user_from_token(
         HTTPException 401 if user does not exist or token is invalid
     """
     try:
+        print("token: ",token)
         if not token:
             # raise and catch to return 401, only needed because fastapi returns 403
             # by default instead of 401 so we set auto_error to False
             raise ValueError("No token")
+        print("verifyIdToken")
         user = verify_id_token(token.credentials)
         return user
     # lots of possible exceptions, see firebase_admin.auth,
     # but most of the time it is a credentials issue
-    except Exception:
+    except Exception as e:
         # we also set the header
         # see https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/
+        print(repr(e))
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Not logged in or Invalid credentials",

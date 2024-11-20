@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_flutter/repo/extras.dart';
+import 'package:school_flutter/repo/login_repo.dart';
 import 'package:school_flutter/res/ui.dart';
 import 'package:school_flutter/splash/logIn_select_page.dart';
 import 'package:school_flutter/splash/login_page.dart';
@@ -47,7 +48,10 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
           var userType = UserType.values.firstWhere(
               (e) => e.title == userTypeText,
               orElse: () => UserType.Parent);
-          return LoginPage(userType);
+          return RepositoryProvider(
+            create: (context) => LoginRepository(),
+            child: LoginPage(userType),
+          );
         },
       ),
     ],
