@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_flutter/res/ui.dart';
-import 'package:school_flutter/splash/LogInPage.dart';
+import 'package:school_flutter/splash/logIn_page.dart';
+import 'package:school_flutter/splash/parent_login_page.dart';
 
 import 'home/home_page.dart';
 import 'repo/auth.dart';
@@ -31,6 +32,12 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
         path: LoginPage.PAGE_NAME,
         builder: (BuildContext context, GoRouterState state) {
           return LoginPage();
+        },
+      ),
+      GoRoute(
+        path: ParentLoginPage.PAGE_NAME,
+        builder: (BuildContext context, GoRouterState state) {
+          return ParentLoginPage();
         },
       ),
     ],

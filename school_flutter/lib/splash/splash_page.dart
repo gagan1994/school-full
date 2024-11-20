@@ -4,13 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:school_flutter/home/home_page.dart';
 import 'package:school_flutter/res/assets.dart';
-import 'package:school_flutter/splash/LogInPage.dart';
+import 'package:school_flutter/splash/logIn_page.dart';
 
 import '../res/color/color_scheme.dart';
 import '../res/constants.dart';
 
 class SplashPage extends StatefulWidget {
-  static const PAGE_NAME = "SplashPage";
+  static const PAGE_NAME = "/";
   const SplashPage({Key? key}) : super(key: key);
 
   @override
@@ -63,11 +63,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     await Future.delayed(Duration(seconds: 2));
     bool isAuth = 2 / 1 == 1;
     if (isAuth) {
-      context.go(MyHomePage.PAGE_NAME);
+      GoRouter.of(context).go(MyHomePage.PAGE_NAME);
       print("going to page: " + MyHomePage.PAGE_NAME);
     } else {
       print("going to page: " + LoginPage.PAGE_NAME);
-      context.go(LoginPage.PAGE_NAME);
+
+      GoRouter.of(context).go(LoginPage.PAGE_NAME);
     }
   }
 }
