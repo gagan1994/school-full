@@ -12,10 +12,12 @@ const TextTheme textTheme = TextTheme(
 final String? fontFamily = GoogleFonts.notoSans().fontFamily;
 
 class TopBar extends StatelessWidget {
+  double heightRatio;
+  TopBar({this.heightRatio = 0.6});
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .6,
+      height: MediaQuery.of(context).size.height * heightRatio,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
@@ -33,64 +35,114 @@ class TopBar extends StatelessWidget {
   }
 }
 
-class CurvePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Path path = Path();
-    Paint paint = Paint();
+class CommonTextField extends StatefulWidget {
+  final TextEditingController controller;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+  final Function(String)? onChanged;
+  final String? helperText;
+  final String? labelText;
+  final int? maxLines;
+  final bool hasError;
+  final IconData? prefixIconData;
+  final IconData? passwordHideIcon;
+  final IconData? passwordShowIcon;
+  final TextInputAction? textInputAction;
+  final Color? textColor;
+  final Color? accentColor;
 
-    path.lineTo(0, size.height * 0.75);
-    path.quadraticBezierTo(size.width * 0.10, size.height * 0.70,
-        size.width * 0.17, size.height * 0.90);
-    path.quadraticBezierTo(
-        size.width * 0.20, size.height, size.width * 0.25, size.height * 0.90);
-    path.quadraticBezierTo(size.width * 0.40, size.height * 0.40,
-        size.width * 0.50, size.height * 0.70);
-    path.quadraticBezierTo(size.width * 0.60, size.height * 0.85,
-        size.width * 0.65, size.height * 0.65);
-    path.quadraticBezierTo(size.width, size.height * 0.90, size.width, 0);
-    path.close();
-
-    paint.color = primaryColor;
-    canvas.drawPath(path, paint);
-
-    path = Path();
-    path.lineTo(0, size.height * 0.50);
-    path.quadraticBezierTo(size.width * 0.10, size.height * 0.80,
-        size.width * 0.15, size.height * 0.60);
-    path.quadraticBezierTo(size.width * 0.20, size.height * 0.45,
-        size.width * 0.27, size.height * 0.60);
-    path.quadraticBezierTo(
-        size.width * 0.45, size.height, size.width * 0.50, size.height * 0.80);
-    path.quadraticBezierTo(size.width * 0.55, size.height * 0.45,
-        size.width * 0.75, size.height * 0.75);
-    path.quadraticBezierTo(
-        size.width * 0.85, size.height * 0.93, size.width, size.height * 0.60);
-    path.lineTo(size.width, 0);
-    path.close();
-
-    paint.color = primaryColor.withOpacity(.7);
-    canvas.drawPath(path, paint);
-
-    path = Path();
-    path.lineTo(0, size.height * 0.75);
-    path.quadraticBezierTo(size.width * 0.10, size.height * 0.55,
-        size.width * 0.22, size.height * 0.70);
-    path.quadraticBezierTo(size.width * 0.30, size.height * 0.90,
-        size.width * 0.40, size.height * 0.75);
-    path.quadraticBezierTo(size.width * 0.52, size.height * 0.50,
-        size.width * 0.65, size.height * 0.70);
-    path.quadraticBezierTo(
-        size.width * 0.75, size.height * 0.85, size.width, size.height * 0.60);
-    path.lineTo(size.width, 0);
-    path.close();
-
-    paint.color = primaryColor.withOpacity(.4);
-    canvas.drawPath(path, paint);
-  }
+  const CommonTextField({
+    Key? key,
+    required this.controller,
+    this.hintText,
+    this.keyboardType,
+    this.obscureText = false,
+    this.onChanged,
+    this.helperText,
+    this.labelText,
+    this.hasError = false,
+    this.prefixIconData,
+    this.passwordHideIcon,
+    this.passwordShowIcon,
+    this.textInputAction,
+    this.textColor,
+    this.maxLines = 1,
+    this.accentColor,
+  }) : super(key: key);
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return oldDelegate != this;
+  _CommonTextFieldState createState() => _CommonTextFieldState();
+}
+
+class _CommonTextFieldState extends State<CommonTextField> {
+  bool _isObscure = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return TextField(
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      obscureText: _isObscure,
+      onChanged: widget.onChanged,
+      textInputAction: widget.textInputAction,
+      maxLines: !_isObscure ? widget.maxLines : 1,
+      style: TextStyle(
+          color: widget.textColor ?? Colors.black, height: 2), // Set text color
+
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        labelText: widget.labelText ??
+            'Default Simple TextField', // Use confirmation text as label if provided, else use default label text
+        labelStyle: TextStyle(
+            color: widget.accentColor ?? Colors.black), // Set accent color
+        helperText: widget.helperText,
+        prefixIcon: widget.prefixIconData != null
+            ? Icon(widget.prefixIconData,
+                color: widget.accentColor ??
+                    theme.colorScheme
+                        .primary) // Set accent color for prefix icon
+            : null,
+        suffixIcon: widget.obscureText
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    _isObscure = !_isObscure;
+                  });
+                },
+                icon: Icon(_isObscure
+                    ? widget.passwordShowIcon ?? Icons.visibility
+                    : widget.passwordHideIcon ?? Icons.visibility_off),
+                color: widget.accentColor ?? theme.colorScheme.primary,
+              )
+            : null,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: theme.primaryColor, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: theme.colorScheme.primary, width: 2),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: theme.disabledColor, width: 1),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Colors.red, width: 1),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Colors.red, width: 2),
+        ),
+        // You can add more customization to the decoration as needed
+        // For example, adding icons, labels, etc.
+      ),
+    );
   }
 }

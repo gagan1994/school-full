@@ -2,9 +2,10 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_flutter/repo/extras.dart';
 import 'package:school_flutter/res/ui.dart';
-import 'package:school_flutter/splash/logIn_page.dart';
-import 'package:school_flutter/splash/parent_login_page.dart';
+import 'package:school_flutter/splash/logIn_select_page.dart';
+import 'package:school_flutter/splash/login_page.dart';
 
 import 'home/home_page.dart';
 import 'repo/auth.dart';
@@ -23,21 +24,30 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
     },
     routes: <RouteBase>[
       GoRoute(
-        path: MyHomePage.PAGE_NAME,
+        name: MyHomePage.PAGE_NAME,
+        path: '/' + MyHomePage.PAGE_NAME,
         builder: (BuildContext context, GoRouterState state) {
           return MyHomePage(title: "title");
         },
       ),
       GoRoute(
-        path: LoginPage.PAGE_NAME,
+        name: LoginSelectPage.PAGE_NAME,
+        path: '/' + LoginSelectPage.PAGE_NAME,
         builder: (BuildContext context, GoRouterState state) {
-          return LoginPage();
+          return LoginSelectPage();
         },
       ),
       GoRoute(
-        path: ParentLoginPage.PAGE_NAME,
+        name: LoginPage.PAGE_NAME,
+        path: '/' + LoginPage.PAGE_NAME,
         builder: (BuildContext context, GoRouterState state) {
-          return ParentLoginPage();
+          var userTypeText = state.uri.queryParameters[':user_type'];
+          print(
+              "user_type: $userTypeText state.uri.queryParameters:${state.uri.queryParameters}");
+          var userType = UserType.values.firstWhere(
+              (e) => e.title == userTypeText,
+              orElse: () => UserType.Parent);
+          return LoginPage(userType);
         },
       ),
     ],

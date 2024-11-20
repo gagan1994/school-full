@@ -1,0 +1,133 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:school_flutter/repo/extras.dart';
+import 'package:school_flutter/res/color/color_scheme.dart';
+
+import '../res/assets.dart';
+import '../res/ui.dart';
+
+class LoginPage extends StatefulWidget {
+  static const PAGE_NAME = "LoginPage";
+  UserType userType;
+  LoginPage(this.userType, {Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  var isRememberMe = false;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+      children: [
+        Stack(
+          children: [
+            TopBar(
+              heightRatio: 0.3,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.38,
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: SvgPicture.asset(
+                school_logo,
+                height: 200,
+                width: 150,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 30),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: CommonTextField(
+            controller: _emailController,
+            hintText: 'Email',
+            labelText: 'Email',
+            prefixIconData: Icons.email_outlined,
+            textInputAction: TextInputAction.next,
+          ),
+        ),
+        SizedBox(height: 30),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: CommonTextField(
+            controller: _passwordController,
+            hintText: 'Password',
+            labelText: 'Password',
+            prefixIconData: Icons.password,
+            obscureText: true,
+            textInputAction: TextInputAction.next,
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 5, right: 20),
+          child: Row(
+            children: [
+              Checkbox(
+                  value: isRememberMe,
+                  onChanged: (val) {
+                    setState(() {
+                      this.isRememberMe = val!;
+                    });
+                  }),
+              GestureDetector(
+                child: Text('Remeber Me'),
+                onTap: () {
+                  setState(() {
+                    isRememberMe = !isRememberMe;
+                  });
+                },
+              ),
+              Expanded(
+                  child: Container(
+                height: 40,
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap: () {
+                    print("forgot pwd clicked");
+                  },
+                  child: const Text(
+                    'Forgot Password?',
+                    style: TextStyle(color: primaryColor),
+                  ),
+                ),
+              ))
+            ],
+          ),
+        ),
+        SizedBox(height: 30),
+        Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width * .9,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                    foregroundColor: Theme.of(context).colorScheme.primary,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)))
+                .copyWith(elevation: ButtonStyleButton.allOrNull(0.0)),
+            onPressed: () {},
+            child: const Text(
+              'Log In',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ],
+    ));
+  }
+}

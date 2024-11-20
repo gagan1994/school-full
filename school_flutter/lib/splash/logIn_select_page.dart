@@ -3,19 +3,20 @@ import 'package:go_router/go_router.dart';
 import 'package:school_flutter/res/assets.dart';
 import 'package:school_flutter/res/color/color_scheme.dart';
 import 'package:school_flutter/res/ui.dart';
-import 'package:school_flutter/splash/parent_login_page.dart';
+import 'package:school_flutter/splash/login_page.dart';
 
+import '../repo/extras.dart';
 import '../res/constants.dart';
 
-class LoginPage extends StatefulWidget {
-  static const PAGE_NAME = "/LoginPage";
-  const LoginPage({Key? key}) : super(key: key);
+class LoginSelectPage extends StatefulWidget {
+  static const PAGE_NAME = "LoginSelectPage";
+  const LoginSelectPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginSelectPage> createState() => _LoginSelectPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginSelectPageState extends State<LoginSelectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,12 +58,16 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _getButton(
-                    Icons.emoji_people_rounded,
-                    'Teacher',
-                    () {},
+                    UserType.Teacher,
+                    () {
+                      context.pushNamed(LoginPage.PAGE_NAME, queryParameters: {
+                        ':user_type': UserType.Teacher.title
+                      });
+                    },
                   ),
-                  _getButton(Icons.people, 'Parent', () {
-                    context.push(ParentLoginPage.PAGE_NAME);
+                  _getButton(UserType.Parent, () {
+                    context.pushNamed(LoginPage.PAGE_NAME,
+                        queryParameters: {':user_type': UserType.Parent.title});
                   }),
                 ],
               ),
@@ -73,9 +78,9 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  OutlinedButton _getButton(IconData ic, String label, Function() onPressed) {
+  OutlinedButton _getButton(UserType type, Function() onPressed) {
     return OutlinedButton.icon(
-      icon: Icon(ic),
+      icon: Icon(type.iconData),
       onPressed: onPressed,
       style: ButtonStyle(
         shape: MaterialStateProperty.resolveWith<OutlinedBorder?>((states) {
@@ -84,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
               side: BorderSide(color: primaryColor));
         }),
       ),
-      label: Text(label),
+      label: Text(type.title),
     );
   }
 }
