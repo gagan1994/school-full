@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +8,7 @@ import 'package:school_flutter/home/home_page.dart';
 import 'package:school_flutter/res/assets.dart';
 import 'package:school_flutter/splash/logIn_select_page.dart';
 
+import '../firebase_options.dart';
 import '../res/color/color_scheme.dart';
 import '../res/constants.dart';
 
@@ -61,7 +64,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   void checkLoginStatusAndNavigate() async {
     await Future.delayed(Duration(seconds: 2));
-    bool isAuth = 2 / 1 == 1;
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    bool isAuth = FirebaseAuth.instance.currentUser != null;
     if (isAuth) {
       GoRouter.of(context).goNamed(MyHomePage.PAGE_NAME);
       print("going to page: " + MyHomePage.PAGE_NAME);

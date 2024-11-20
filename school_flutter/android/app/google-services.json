@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "507072470929",
+    "project_id": "trippit-74b5f",
+    "storage_bucket": "trippit-74b5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507072470929:android:1a10de261e9aa4dcb38430",
+        "android_client_info": {
+          "package_name": "com.example.tripzie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507072470929-i504q00jipuvdkcrrdafql94d3jbupgg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tripzie",
+            "certificate_hash": "d7976dd69aedc79f46ffcc1bbfcbdc851c90a67a"
+          }
+        },
+        {
+          "client_id": "507072470929-492p089n9a9tnrh0bjrk5d9vompmbaa4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcIv3mw9GeEOVQRecHQrzhTtmbGoch0YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507072470929-492p089n9a9tnrh0bjrk5d9vompmbaa4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "507072470929-kqsjs5bbjl4flo5ld91n8qn765ms2rh1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tripzie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507072470929:android:c86d0a4d817ef1fdb38430",
+        "android_client_info": {
+          "package_name": "com.gpd.school"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507072470929-492p089n9a9tnrh0bjrk5d9vompmbaa4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcIv3mw9GeEOVQRecHQrzhTtmbGoch0YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507072470929-492p089n9a9tnrh0bjrk5d9vompmbaa4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "507072470929-kqsjs5bbjl4flo5ld91n8qn765ms2rh1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tripzie"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507072470929:android:5450e8f3f1acbddab38430",
+        "android_client_info": {
+          "package_name": "dev.flutterexplained.webrtc_tutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507072470929-492p089n9a9tnrh0bjrk5d9vompmbaa4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcIv3mw9GeEOVQRecHQrzhTtmbGoch0YM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507072470929-492p089n9a9tnrh0bjrk5d9vompmbaa4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "507072470929-kqsjs5bbjl4flo5ld91n8qn765ms2rh1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tripzie"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
