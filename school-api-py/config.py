@@ -30,6 +30,9 @@ def get_firebase_user_from_token(
             raise ValueError("No token")
         print("verifyIdToken")
         user = verify_id_token(token.credentials)
+        print("******Prinitng creds******")
+        print('valid creds',user)
+        print("**************************")
         return user
     # lots of possible exceptions, see firebase_admin.auth,
     # but most of the time it is a credentials issue

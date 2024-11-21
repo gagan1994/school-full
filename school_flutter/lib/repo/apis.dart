@@ -10,17 +10,20 @@ Future<http.Response> getData(var endPoint) async {
 
 Future<http.Response> postData(var endPoint, {body}) async {
   var token = await FirebaseAuth.instance.currentUser!.getIdToken();
-
+  print("${BASE_URL + endPoint}");
   return http.post(Uri.parse(BASE_URL + endPoint),
       body: body, headers: {'authorization': 'Bearer $token'});
 }
 
 Future<bool> userLogIn() async {
-  var res = await postData('user_login');
+  var res = await getData('user_login');
+  var token = await FirebaseAuth.instance.currentUser!.getIdToken();
+  print(token);
   if (res.statusCode == 200) {
     print("res");
     print(res.body);
     return true;
   }
+  print("responded with status code: ${res.statusCode}");
   return false;
 }

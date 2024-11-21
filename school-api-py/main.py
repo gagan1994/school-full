@@ -42,6 +42,7 @@ async def root():
 
 @app.get("/user_login")
 async def user_login(user = Depends(get_firebase_user_from_token)):
+    print("email:",user['email'])
     return {"msg":"Hello, user","uid":user['uid']} 
 
 app.include_router(user_route, tags=["users"], prefix="/users")

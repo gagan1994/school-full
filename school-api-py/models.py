@@ -24,11 +24,11 @@ class User(BaseModel):
         }
 
 class UserUpdate(BaseModel):
-    name: Optional[str]
-    email: Optional[str]
-    phone_number: Optional[str]
-    image_uri: Optional[str]
-    user_type: Optional[str]
+    name: Optional[str] = None
+    email: Optional[str] = None
+    phone_number: Optional[str] = None
+    image_uri: Optional[str] = None
+    user_type: Optional[str] = None
 
     class Config:
         schema_extra = {

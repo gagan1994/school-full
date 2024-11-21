@@ -2,7 +2,12 @@
 from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
+from fastapi import Depends
 from models import User, UserUpdate
+from school_firebase_auth import update_user_firebase
+from config import get_firebase_user_from_token
+
+
 
 router = APIRouter()
 
@@ -27,21 +32,22 @@ def find_user(phone_number: str, request: Request):
         return user
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"user with ID {phone_number} not found")
 
-@router.put("/{phone_number}", response_description="Update a user", response_model=User)
-def update_user(phone_number: str, request: Request, user: UserUpdate = Body(...),embed=True):
+@router.put("/{phone_number}", 
+response_description="Update a user",
+ response_model=User,
+ response_model_exclude_unset=True)
+async def update_user(phone_number: str, request: Request, user: UserUpdate = Body(...),embed=True,
+firebase_user = Depends(get_firebase_user_from_token)):
     print(phone_number)
     user = {k: v for k, v in user.dict().items() if v is not None}
     if len(user) >= 1:
         update_result = request.app.database["users"].update_one(
             {"phone_number": phone_number}, {"$set": user}
         )
-
-        if update_result.modified_count == 0:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"user with ID {phone_number} not found")
-
     if (
         existing_user := request.app.database["users"].find_one({"phone_number": phone_number})
     ) is not None:
+        await update_user_firebase(existing_user,firebase_user)
         return existing_user
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"user with ID {phone_number} not found")
