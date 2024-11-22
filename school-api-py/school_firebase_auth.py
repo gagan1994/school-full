@@ -1,5 +1,5 @@
 from firebase_admin import auth
-from models import User
+from models import Student
 
 async def update_user_firebase(user,firebase_user):
     print("updating current user: ",user)

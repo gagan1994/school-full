@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI with JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <h2>Create Teacher</h2>
+        <form action="" id="form">
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" value="Nalini" />
+
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" value="s" />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="nalini@gmail.com" />
+
+            <!-- <label for="password">Password:</label>
+            <input type="password" id="password" name="password"
+                pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])\S{8,}$" title="Password must contain at least one number, 
+                           one alphabet, one symbol, and be at 
+                           least 8 characters long" />
+
+            <label for="repassword">Re-type Password:</label>
+            <input type="password" id="repassword" name="repassword" /> -->
+
+            <label for="phone">Contact:</label>
+            <input type="text" id="phone" name="phone" value="9876543210" maxlength="10" />
+
+            <label for="address">Address:</label>
+            <textarea type="text" id="address" name="address">test address</textarea>
+
+            <label for="dob">DOB:</label>
+            <input type="datetime-local" id="dob" name="dob" value="1994-11-21T10:30">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">
+                    Male
+                </option>
+                <option value="female">
+                    Female
+                </option>
+                <option value="other">
+                    Other
+                </option>
+            </select>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="primary_teacher">
+                    Primary Teacher
+                </option>
+                <option value="trained_graduate_teacher">
+                    Trained Graduate Teacher
+                </option>
+                <option value="post_graduate_teacher">
+                    Post Graduate teacher
+                </option>
+                <option value="lead_teacher">
+                    Lead teacher
+                </option>
+            </select>
+
+            <label for="hire_date">Hire Date:</label>
+            <input type="datetime-local" id="hire_date" name="hire_date" value="2024-11-21T10:30">
+            <label for="salary">Salary:</label>
+            <input type="number" id="salary" name="salary" min="1" step="any" value="10000" />
+
+            <button type="submit" onclick="return foo();">
+                Submit
+            </button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

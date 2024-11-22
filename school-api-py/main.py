@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
-from user_route import router as user_route
 from fastapi import Depends, HTTPException, status
 
 import firebase_admin
@@ -9,10 +8,21 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from config import settings
 from config import get_firebase_user_from_token
+from routes import student_route, teacher_route
+
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+from typing import Optional
+from fastapi.encoders import jsonable_encoder
+
+class CustomJSONResponse(JSONResponse):
+    def render(self, content: any) -> bytes:
+        # Exclude None values globally
+        encoded_content = jsonable_encoder(content, exclude_none=True)
+        return super().render(encoded_content)
 
 
-
-app = FastAPI()
+app = FastAPI(default_response_class=CustomJSONResponse)
 default_app = firebase_admin.initialize_app()
 
 origins = [settings.frontend_url]
@@ -45,4 +55,5 @@ async def user_login(user = Depends(get_firebase_user_from_token)):
     print("email:",user['email'])
     return {"msg":"Hello, user","uid":user['uid']} 
 
-app.include_router(user_route, tags=["users"], prefix="/users")
+app.include_router(student_route, tags=["users"], prefix="/student")
+app.include_router(teacher_route, tags=["teacher"], prefix="/teacher")
