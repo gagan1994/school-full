@@ -23,43 +23,44 @@ def create_sudent(request: Request, sudent: Student = Body(...)):
 
 @router.get("/", response_description="List all sudents", response_model=List[Student])
 def list_sudents(request: Request):
+    print("----list students----")
     sudents = list(request.app.database[db_name].find(limit=100))
-    print("student: ",sudents)
+    print("returning student: ",len(sudents))
     return sudents
 
-@router.get("/{phone_number}", response_description="Get a single sudent by id", response_model=Student)
-def find_sudent(phone_number: str, request: Request):
-    if (sudent := request.app.database[db_name].find_one({"phone_number": phone_number})) is not None:
+@router.get("/{phone}", response_description="Get a single sudent by phone", response_model=Student)
+def find_sudent(phone: str, request: Request):
+    if (sudent := request.app.database[db_name].find_one({"phone": phone})) is not None:
         return sudent
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone_number} not found")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
 
-@router.put("/{phone_number}", 
+@router.put("/{phone}", 
 response_description="Update a sudent",
  response_model=Student,
  response_model_exclude_unset=True)
-async def update_sudent(phone_number: str, request: Request, sudent: StudentUpdate = Body(...),embed=True,
+async def update_sudent(phone: str, request: Request, sudent: StudentUpdate = Body(...),embed=True,
 firebase_sudent = Depends(get_firebase_user_from_token)):
-    print(phone_number)
+    print(phone)
     sudent = {k: v for k, v in sudent.dict().items() if v is not None}
     if len(sudent) >= 1:
         update_result = request.app.database[db_name].update_one(
-            {"phone_number": phone_number}, {"$set": sudent}
+            {"phone": phone}, {"$set": sudent}
         )
     if (
-        existing_sudent := request.app.database[db_name].find_one({"phone_number": phone_number})
+        existing_sudent := request.app.database[db_name].find_one({"phone": phone})
     ) is not None:
         await update_user_firebase(existing_sudent,firebase_sudent)
         return existing_sudent
 
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone_number} not found")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
 
-@router.delete("/{phone_number}", response_description="Delete a sudent")
-def delete_sudent(phone_number: str, request: Request, response: Response):
-    delete_result = request.app.database[db_name].delete_one({"phone_number": phone_number})
+@router.delete("/{phone}", response_description="Delete a sudent")
+def delete_sudent(phone: str, request: Request, response: Response):
+    delete_result = request.app.database[db_name].delete_one({"phone": phone})
 
     if delete_result.deleted_count == 1:
         response.status_code = status.HTTP_204_NO_CONTENT
-        response.message = f"sudent with phone_number {phone_number} deleted success"
+        response.message = f"sudent with phone {phone} deleted success"
         return response
 
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with phone_number {phone_number} not found")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with phone {phone} not found")

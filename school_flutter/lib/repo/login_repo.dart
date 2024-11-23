@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'apis.dart';
 
@@ -9,6 +10,27 @@ class LoginRepository {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: state.username, password: state.password);
     print("success firebase auth");
+    userLogIn();
+  }
+
+  Future<void> gmailLogin(LoginState state) async {
+    if (FirebaseAuth.instance.currentUser == null) {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    }
+    var currentUser = FirebaseAuth.instance.currentUser!;
+    print(currentUser.email);
+    // Once signed in, return the UserCredential
     userLogIn();
   }
 }
@@ -86,6 +108,11 @@ class LoginSubmitted extends LoginEvent {
   List<Object?> get props => [];
 }
 
+class GmailLoginSubmitted extends LoginEvent {
+  @override
+  List<Object?> get props => [];
+}
+
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginRepository? authRepo;
 
@@ -110,6 +137,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       try {
         await authRepo?.login(state);
+        emit(state.copyWith(formStatus: SubmissionSuccess()));
+      } catch (e) {
+        print(e);
+        emit(state.copyWith(formStatus: SubmissionFailed(e)));
+      }
+    } else if (event is GmailLoginSubmitted) {
+      emit(state.copyWith(formStatus: FormSubmitting()));
+
+      try {
+        await authRepo?.gmailLogin(state);
         emit(state.copyWith(formStatus: SubmissionSuccess()));
       } catch (e) {
         print(e);

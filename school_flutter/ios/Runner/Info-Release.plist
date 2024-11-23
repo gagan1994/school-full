@@ -49,5 +49,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Replace this with your URL scheme -->
+				<string>com.googleusercontent.apps.507072470929-1lduesea5plrl6hv9cg2gevue21ndum2</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

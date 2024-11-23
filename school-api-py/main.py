@@ -14,6 +14,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional
 from fastapi.encoders import jsonable_encoder
+from school_firebase_auth import update_user_firebase
 
 class CustomJSONResponse(JSONResponse):
     def render(self, content: any) -> bytes:
@@ -51,9 +52,25 @@ async def root():
     return {"message": "Welcome to the PyMongo tutorial!"}
 
 @app.get("/user_login")
-async def user_login(user = Depends(get_firebase_user_from_token)):
-    print("email:",user['email'])
-    return {"msg":"Hello, user","uid":user['uid']} 
+async def user_login(firebase_user = Depends(get_firebase_user_from_token)):
+    email = firebase_user['email']
+    print("email:",email)
+    query = {"email":email}
+    user = app.database['student'].find_one(query)
+    user_type = "student"
+    if user is None:
+        user = app.database['teacher'].find_one(query)
+        user_type = "teacher"
+        print(f"email couldnt find in teacher checking parent")
+        if user is None:
+            user = app.database['parent'].find_one(query)
+            print(f"email couldnt find in parent")
+            user_type = "teacher"
+            if user is None:
+                return {"msg":"user doesnt exist with email: "+email}
+    print("found user: ",user," from: ",user_type)
+    return {"msg":"Hello, user","uid":firebase_user['uid']} 
 
-app.include_router(student_route, tags=["users"], prefix="/student")
+
+app.include_router(student_route, tags=["student"], prefix="/student")
 app.include_router(teacher_route, tags=["teacher"], prefix="/teacher")

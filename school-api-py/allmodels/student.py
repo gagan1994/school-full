@@ -19,7 +19,7 @@ class Student(BaseModel):
     status: Optional[bool] = None
     last_login: Optional[datetime] = None
     dob: Optional[datetime] = None
-    parent_id: Optional[PyObjectId] = Field(alias="parent")
+    parent: Optional[PyObjectId] = Field(alias="parent")
 
     class Config:
         allow_population_by_field_name = True
@@ -68,7 +68,7 @@ class StudentUpdate(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "parent_id":"",
+                "parent":"",
                 "fname": "Nalini",
                 "lname": "S",
                 "email": "nalini@gmail.com",

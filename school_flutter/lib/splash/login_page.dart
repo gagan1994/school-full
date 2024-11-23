@@ -164,6 +164,50 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
+              SizedBox(height: 30),
+              Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width * .9,
+                child: BlocBuilder<LoginBloc, LoginState>(
+                  builder: (context, state) {
+                    return state.formStatus is FormSubmitting
+                        ? const Center(child: CircularProgressIndicator())
+                        : OutlinedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 30.0,
+                                  width: 30.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(ic_google_logo),
+                                        fit: BoxFit.cover),
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text("Sign In with Google")
+                              ],
+                            ),
+
+                            // by onpressed we call the function signup function
+                            onPressed: () {
+                              context
+                                  .read<LoginBloc>()
+                                  .add(GmailLoginSubmitted());
+                            },
+                          );
+                  },
+                ),
+              ),
             ],
           ),
         ),
