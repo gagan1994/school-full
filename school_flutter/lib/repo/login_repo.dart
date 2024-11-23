@@ -10,7 +10,7 @@ class LoginRepository {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: state.username, password: state.password);
     print("success firebase auth");
-    userLogIn();
+    await userLogIn();
   }
 
   Future<void> gmailLogin(LoginState state) async {
@@ -28,10 +28,10 @@ class LoginRepository {
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
     }
-    var currentUser = FirebaseAuth.instance.currentUser!;
+    var currentUser = await FirebaseAuth.instance.currentUser!;
     print(currentUser.email);
     // Once signed in, return the UserCredential
-    userLogIn();
+    await userLogIn();
   }
 }
 
@@ -44,6 +44,8 @@ class InitialFormStatus extends FormSubmissionStatus {
 }
 
 class FormSubmitting extends FormSubmissionStatus {}
+
+class GoogleFormSubmitting extends FormSubmissionStatus {}
 
 class SubmissionSuccess extends FormSubmissionStatus {}
 
@@ -143,7 +145,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(formStatus: SubmissionFailed(e)));
       }
     } else if (event is GmailLoginSubmitted) {
-      emit(state.copyWith(formStatus: FormSubmitting()));
+      emit(state.copyWith(formStatus: GoogleFormSubmitting()));
 
       try {
         await authRepo?.gmailLogin(state);

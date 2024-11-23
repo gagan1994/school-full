@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -145,4 +146,34 @@ class _CommonTextFieldState extends State<CommonTextField> {
       ),
     );
   }
+}
+
+void showMessage(
+    BuildContext context, String title, String message, ContentType type) {
+  final snackBar = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+        title: title,
+        message: message,
+        contentType: type,
+        inMaterialBanner: true),
+  );
+
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(snackBar);
+}
+
+void showSuccess(BuildContext context, String message) {
+  showMessage(context, 'Success', message, ContentType.success);
+}
+
+void showError(BuildContext context, String message) {
+  showMessage(context, 'Error!', message, ContentType.failure);
+}
+
+void showInfo(BuildContext context, String message) {
+  showMessage(context, 'Info', message, ContentType.help);
 }

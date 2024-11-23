@@ -37,8 +37,7 @@ class _LoginPageState extends State<LoginPage> {
           listenWhen: (previous, current) =>
               previous.formStatus != current.formStatus,
           listener: (context, state) {
-            final formStatus = state.formStatus;
-            if (formStatus is SubmissionFailed) {}
+            updateLoginStatus(state);
           },
           child: Column(
             children: [
@@ -170,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                 width: MediaQuery.of(context).size.width * .9,
                 child: BlocBuilder<LoginBloc, LoginState>(
                   builder: (context, state) {
-                    return state.formStatus is FormSubmitting
+                    return state.formStatus is GoogleFormSubmitting
                         ? const Center(child: CircularProgressIndicator())
                         : OutlinedButton(
                             style: ElevatedButton.styleFrom(
@@ -213,5 +212,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void updateLoginStatus(LoginState state) {
+    final formStatus = state.formStatus;
+    if (formStatus is SubmissionFailed) {
+      showError(context, "Login Failed Please Retry");
+    } else if (formStatus is SubmissionSuccess) {
+      showSuccess(context, "Login Successful");
+    }
   }
 }
