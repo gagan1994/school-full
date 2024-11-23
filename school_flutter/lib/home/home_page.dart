@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  static const PAGE_NAME = "MyHomePage";
-  const MyHomePage({super.key, required this.title});
+import '../res/constants.dart';
 
-  final String title;
-
+class HomePage extends StatefulWidget {
+  static const PAGE_NAME = "HomePage";
+  HomePage({super.key});
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -24,10 +23,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(appName),
       ),
       body: PopScope(
-        canPop: false,
+        canPop: true,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

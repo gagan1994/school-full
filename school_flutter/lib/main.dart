@@ -23,38 +23,35 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
     builder: (BuildContext context, GoRouterState state) {
       return SplashPage();
     },
-    routes: <RouteBase>[
-      GoRoute(
-        name: MyHomePage.PAGE_NAME,
-        path: '/' + MyHomePage.PAGE_NAME,
-        builder: (BuildContext context, GoRouterState state) {
-          return MyHomePage(title: "title");
-        },
-      ),
-      GoRoute(
-        name: LoginSelectPage.PAGE_NAME,
-        path: '/' + LoginSelectPage.PAGE_NAME,
-        builder: (BuildContext context, GoRouterState state) {
-          return LoginSelectPage();
-        },
-      ),
-      GoRoute(
-        name: LoginPage.PAGE_NAME,
-        path: '/' + LoginPage.PAGE_NAME,
-        builder: (BuildContext context, GoRouterState state) {
-          var userTypeText = state.uri.queryParameters[':user_type'];
-          print(
-              "user_type: $userTypeText state.uri.queryParameters:${state.uri.queryParameters}");
-          var userType = UserType.values.firstWhere(
-              (e) => e.title == userTypeText,
-              orElse: () => UserType.Parent);
-          return RepositoryProvider(
-            create: (context) => LoginRepository(),
-            child: LoginPage(userType),
-          );
-        },
-      ),
-    ],
+  ),
+  GoRoute(
+    name: HomePage.PAGE_NAME,
+    path: '/' + HomePage.PAGE_NAME,
+    builder: (BuildContext context, GoRouterState state) {
+      return HomePage();
+    },
+  ),
+  GoRoute(
+    name: LoginSelectPage.PAGE_NAME,
+    path: '/' + LoginSelectPage.PAGE_NAME,
+    builder: (BuildContext context, GoRouterState state) {
+      return LoginSelectPage();
+    },
+  ),
+  GoRoute(
+    name: LoginPage.PAGE_NAME,
+    path: '/' + LoginPage.PAGE_NAME,
+    builder: (BuildContext context, GoRouterState state) {
+      var userTypeText = state.uri.queryParameters[':user_type'];
+      print(
+          "user_type: $userTypeText state.uri.queryParameters:${state.uri.queryParameters}");
+      var userType = UserType.values.firstWhere((e) => e.title == userTypeText,
+          orElse: () => UserType.Parent);
+      return RepositoryProvider(
+        create: (context) => LoginRepository(),
+        child: LoginPage(userType),
+      );
+    },
   ),
 ]);
 

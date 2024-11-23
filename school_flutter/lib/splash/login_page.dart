@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:school_flutter/repo/extras.dart';
 import 'package:school_flutter/res/color/color_scheme.dart';
 
+import '../home/home_page.dart';
 import '../repo/login_repo.dart';
 import '../res/assets.dart';
 import '../res/ui.dart';
@@ -220,6 +222,7 @@ class _LoginPageState extends State<LoginPage> {
       showError(context, "Login Failed Please Retry");
     } else if (formStatus is SubmissionSuccess) {
       showSuccess(context, "Login Successful");
+      GoRouter.of(context).goNamed(HomePage.PAGE_NAME);
     }
   }
 }

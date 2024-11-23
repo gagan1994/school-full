@@ -57,6 +57,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     );
   }
 
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   void getPackageName() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appName = packageInfo.appName;
@@ -68,12 +74,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     bool isAuth = FirebaseAuth.instance.currentUser != null;
-    if (false) {
-      GoRouter.of(context).goNamed(MyHomePage.PAGE_NAME);
-      print("going to page: " + MyHomePage.PAGE_NAME);
-    } else {
-      print("going to page: " + LoginSelectPage.PAGE_NAME);
-      GoRouter.of(context).goNamed(LoginSelectPage.PAGE_NAME);
-    }
+    var page = (isAuth) ? HomePage.PAGE_NAME : LoginSelectPage.PAGE_NAME;
+    print("going to page: $page");
+    GoRouter.of(context).goNamed(page);
   }
 }
