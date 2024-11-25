@@ -26,9 +26,13 @@ table_teacher_leave_request = "teacher_leave_request"
 table_techer_leave_balance = "teacher_leave_balance"
 table_attendance = "attendance"
 
+
 def delete_all(delete_tables):
     for val in delete_tables:
-        delete_result = database[val].delete_many({})
+        query = {}
+        if(val == table_teacher):
+            query = {"email": {"$ne": "gagan.s.patil28@gmail.com"}}
+        delete_result = database[val].delete_many(query)
 
 
 delete_all(
@@ -37,11 +41,10 @@ delete_all(
         table_student,
         table_grade,
         table_course,
-        table_teacher,
         table_classroom,
         table_classroom_course,
         table_classroom_student,
-
+        table_teacher,
         table_exam,
         table_exam_type,
         table_exam_course,
@@ -156,6 +159,7 @@ def create_teacher(course_id):
     "gender": get_geneder(),
     "hire_date": now,
     "salary": (random.randint(1, 20)*1000),
+    "image_uri":get_image(),
     "address": name+", Gopala Gowda Extension 100ft Road, 4th Cross Rd, Gopala Gowda Extension, Shivamogga, Karnataka 577205"
     }
     return insert_to_db(table_teacher,teacher)
@@ -200,6 +204,7 @@ def create_sudent(class_room_id, no_of_childern):
     "fname": name,
     "lname": lname,
     "phone": phone,
+    "dob": now,
     "gender":get_geneder(),
     "status": False,
     "last_login_date": now,

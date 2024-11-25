@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,15 +17,17 @@ Future<http.Response> postData(var endPoint, {body}) async {
       body: body, headers: {'authorization': 'Bearer $token'});
 }
 
-Future<bool> userLogIn() async {
+Future<dynamic> userLogIn() async {
   var res = await getData('user_login');
   var token = await FirebaseAuth.instance.currentUser!.getIdToken();
+  print("*************Private Key*************");
   print(token);
+  print("-------------Private Key-------------");
   if (res.statusCode == 200) {
     print("res");
     print(res.body);
-    return true;
+    return jsonDecode(res.body);
   }
   print("responded with status code: ${res.statusCode}");
-  return false;
+  throw Exception("Not able to login ${res.statusCode}");
 }

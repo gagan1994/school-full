@@ -65,11 +65,12 @@ async def user_login(firebase_user = Depends(get_firebase_user_from_token)):
         if user is None:
             user = app.database['parent'].find_one(query)
             print(f"email couldnt find in parent")
-            user_type = "teacher"
+            user_type = "parent"
             if user is None:
-                return {"msg":"user doesnt exist with email: "+email}
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
+                
     print("found user: ",user," from: ",user_type)
-    return {"msg":"Hello, user","uid":firebase_user['uid']} 
+    return {"msg":"Hello, user","uid":firebase_user['uid'],"user_type":user_type,'user':user} 
 
 
 app.include_router(student_route, tags=["student"], prefix="/student")

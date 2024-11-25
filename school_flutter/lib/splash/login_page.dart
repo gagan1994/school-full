@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:school_flutter/repo/extras.dart';
 import 'package:school_flutter/res/color/color_scheme.dart';
 
-import '../home/home_page.dart';
 import '../repo/login_repo.dart';
 import '../res/assets.dart';
 import '../res/ui.dart';
@@ -222,7 +221,11 @@ class _LoginPageState extends State<LoginPage> {
       showError(context, "Login Failed Please Retry");
     } else if (formStatus is SubmissionSuccess) {
       showSuccess(context, "Login Successful");
-      GoRouter.of(context).goNamed(HomePage.PAGE_NAME);
+      if (formStatus.responseBody['user_type'] != null) {
+        GoRouter.of(context).goNamed(
+            "${formStatus.responseBody['user_type']}_home_page",
+            extra: formStatus.responseBody);
+      }
     }
   }
 }

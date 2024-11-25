@@ -2,13 +2,18 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_flutter/home/student/student_model.dart';
+import 'package:school_flutter/home/teacher/teacher_model.dart';
 import 'package:school_flutter/repo/extras.dart';
 import 'package:school_flutter/repo/login_repo.dart';
 import 'package:school_flutter/res/ui.dart';
 import 'package:school_flutter/splash/logIn_select_page.dart';
 import 'package:school_flutter/splash/login_page.dart';
 
-import 'home/home_page.dart';
+import 'home/parents//home_page.dart' as ParentHomePage;
+import 'home/parents/parent_model.dart';
+import 'home/student/home_page.dart' as StudentHomePage;
+import 'home/teacher//home_page.dart' as TeacherHomePage;
 import 'repo/auth.dart';
 import 'res/color/color_scheme.dart';
 import 'splash/splash_page.dart';
@@ -25,10 +30,24 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
     },
   ),
   GoRoute(
-    name: HomePage.PAGE_NAME,
-    path: '/' + HomePage.PAGE_NAME,
+    name: ParentHomePage.HomePage.PAGE_NAME,
+    path: '/' + ParentHomePage.HomePage.PAGE_NAME,
     builder: (BuildContext context, GoRouterState state) {
-      return HomePage();
+      return ParentHomePage.HomePage(user: Parent(user_json: state.extra));
+    },
+  ),
+  GoRoute(
+    name: StudentHomePage.HomePage.PAGE_NAME,
+    path: '/' + StudentHomePage.HomePage.PAGE_NAME,
+    builder: (BuildContext context, GoRouterState state) {
+      return StudentHomePage.HomePage(user: Student(user_json: state.extra));
+    },
+  ),
+  GoRoute(
+    name: TeacherHomePage.HomePage.PAGE_NAME,
+    path: '/' + TeacherHomePage.HomePage.PAGE_NAME,
+    builder: (BuildContext context, GoRouterState state) {
+      return TeacherHomePage.HomePage(user: Teacher(user_json: state.extra));
     },
   ),
   GoRoute(

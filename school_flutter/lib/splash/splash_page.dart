@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:school_flutter/home/home_page.dart';
+import 'package:school_flutter/repo/apis.dart';
 import 'package:school_flutter/res/assets.dart';
+import 'package:school_flutter/res/ui.dart';
 import 'package:school_flutter/splash/logIn_select_page.dart';
 
 import '../firebase_options.dart';
@@ -73,9 +74,18 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    bool isAuth = FirebaseAuth.instance.currentUser != null;
-    var page = (isAuth) ? HomePage.PAGE_NAME : LoginSelectPage.PAGE_NAME;
-    print("going to page: $page");
+    var page = LoginSelectPage.PAGE_NAME;
+    try {
+      if (FirebaseAuth.instance.currentUser != null) {
+        var response = await userLogIn();
+        page = "${response['user_type']}_home_page";
+        GoRouter.of(context).goNamed(page, extra: response);
+      }
+      return;
+    } catch (e) {
+      showError(context, e.toString());
+    }
     GoRouter.of(context).goNamed(page);
+    print("going to page: $page");
   }
 }
