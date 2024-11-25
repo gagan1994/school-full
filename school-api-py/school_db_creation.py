@@ -32,6 +32,8 @@ def delete_all(delete_tables):
         query = {}
         if(val == table_teacher):
             query = {"email": {"$ne": "gagan.s.patil28@gmail.com"}}
+        if(val == table_parent):
+            query = {"email": {"$ne": "gagan.s.patil28@gmail.com"}}
         delete_result = database[val].delete_many(query)
 
 
@@ -207,7 +209,7 @@ def create_sudent(class_room_id, no_of_childern):
     "dob": now,
     "gender":get_geneder(),
     "status": False,
-    "last_login_date": now,
+    "last_login": now,
     "last_login_ip": "192.168.1.1",
     "image_uri": get_image(),
     "address": address

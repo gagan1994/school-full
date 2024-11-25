@@ -6,6 +6,7 @@ from fastapi import Depends
 from models import Student, StudentUpdate
 from school_firebase_auth import update_user_firebase
 from config import get_firebase_user_from_token
+from bson import ObjectId
 
 db_name = "student";
 
@@ -31,6 +32,12 @@ def list_sudents(request: Request):
 @router.get("/{phone}", response_description="Get a single sudent by phone", response_model=Student)
 def find_sudent(phone: str, request: Request):
     if (sudent := request.app.database[db_name].find_one({"phone": phone})) is not None:
+        return sudent
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
+
+@router.get("/parent/{parent_id}", response_description="Get a single sudent by phone", response_model=List[Student])
+def find_sudent_from_parent_id(parent_id: str, request: Request):
+    if (sudent := request.app.database[db_name].find({"parent": ObjectId(parent_id)})) is not None:
         return sudent
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
 
