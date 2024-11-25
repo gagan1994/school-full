@@ -77,12 +77,14 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     var page = LoginSelectPage.PAGE_NAME;
     try {
       if (FirebaseAuth.instance.currentUser != null) {
+        print(FirebaseAuth.instance.currentUser);
         var response = await userLogIn();
         page = "${response['user_type']}_home_page";
         GoRouter.of(context).goNamed(page, extra: response);
       }
       return;
     } catch (e) {
+      print(e);
       showError(context, e.toString());
     }
     GoRouter.of(context).goNamed(page);

@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
-const BASE_URL = 'http://192.168.1.8:8000/';
+const BASE_URL = 'http://192.168.1.2:8000/';
 Future<http.Response> getData(var endPoint) async {
-  var token = await FirebaseAuth.instance.currentUser!.getIdToken();
+  var token = await FirebaseAuth.instance.currentUser!.getIdToken(true);
   return http.get(Uri.parse(BASE_URL + endPoint),
       headers: {'authorization': 'Bearer $token'});
 }
