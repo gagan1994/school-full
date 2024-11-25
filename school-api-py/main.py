@@ -72,6 +72,15 @@ async def user_login(firebase_user = Depends(get_firebase_user_from_token)):
     
     print("found user: ",user," from: ",user_type)
     user['_id'] = str(user['_id'])
+    user['dob'] = str(user['dob'].isoformat())
+    user['last_login'] = str(user['last_login'].isoformat())
+    if user_type == 'teacher':
+        user['course'] = str(user['course'])
+        user['hire_date'] = str(user['hire_date'].isoformat())
+    if user_type == 'student':
+        user['date_of_join'] = (user['date_of_join'].isoformat())
+        user['parent'] = str(user['parent'])
+        
     return {"msg":"Hello, user","uid":firebase_user['uid'],"user_type":user_type,'user':dumps(user)} 
 
 
