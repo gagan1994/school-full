@@ -15,6 +15,7 @@ from pydantic import BaseModel
 from typing import Optional
 from fastapi.encoders import jsonable_encoder
 from school_firebase_auth import update_user_firebase
+from bson.json_util import dumps
 
 class CustomJSONResponse(JSONResponse):
     def render(self, content: any) -> bytes:
@@ -68,9 +69,10 @@ async def user_login(firebase_user = Depends(get_firebase_user_from_token)):
             user_type = "parent"
             if user is None:
                 raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
-                
+    
     print("found user: ",user," from: ",user_type)
-    return {"msg":"Hello, user","uid":firebase_user['uid'],"user_type":user_type,'user':user} 
+    user['_id'] = str(user['_id'])
+    return {"msg":"Hello, user","uid":firebase_user['uid'],"user_type":user_type,'user':dumps(user)} 
 
 
 app.include_router(student_route, tags=["student"], prefix="/student")
