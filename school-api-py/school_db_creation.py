@@ -231,7 +231,7 @@ def create_sudent(class_room_id, no_of_childern):
             "date_of_join": now,
             "gender":get_geneder(),
             "status": False,
-            "last_login_date": now,
+            "last_login": now,
             "last_login_ip": "192.168.1.1",
             "image_uri": get_image(),
             "parent": inserted_id,

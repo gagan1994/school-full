@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 from .py_object_id import PyObjectId
 from datetime import date, datetime, time, timedelta
+from typing import List
 
 class Student(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id") 
@@ -85,3 +86,8 @@ class StudentUpdate(BaseModel):
                 "status":False
             }
         }
+
+
+class ParentHome(BaseModel):
+    title: Optional[str] = 'parent'
+    childrens: List[Student] = None

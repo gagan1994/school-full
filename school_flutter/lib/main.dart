@@ -6,6 +6,7 @@ import 'package:school_flutter/home/student/student_model.dart';
 import 'package:school_flutter/home/teacher/teacher_model.dart';
 import 'package:school_flutter/repo/extras.dart';
 import 'package:school_flutter/repo/login_repo.dart';
+import 'package:school_flutter/repo/student_repo.dart';
 import 'package:school_flutter/res/ui.dart';
 import 'package:school_flutter/splash/logIn_select_page.dart';
 import 'package:school_flutter/splash/login_page.dart';
@@ -33,7 +34,10 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
     name: ParentHomePage.HomePage.PAGE_NAME,
     path: '/' + ParentHomePage.HomePage.PAGE_NAME,
     builder: (BuildContext context, GoRouterState state) {
-      return ParentHomePage.HomePage(user: Parent(user_json: state.extra));
+      return RepositoryProvider(
+        create: (BuildContext context) => StudentRepo(),
+        child: ParentHomePage.HomePage(user: Parent(user_json: state.extra)),
+      );
     },
   ),
   GoRoute(

@@ -3,7 +3,7 @@ from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
 from fastapi import Depends
-from models import Student, StudentUpdate
+from models import Student, StudentUpdate, ParentHome
 from school_firebase_auth import update_user_firebase
 from config import get_firebase_user_from_token
 from bson import ObjectId
@@ -35,10 +35,11 @@ def find_sudent(phone: str, request: Request):
         return sudent
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
 
-@router.get("/parent/{parent_id}", response_description="Get a single sudent by phone", response_model=List[Student])
+@router.get("/parent_home/{parent_id}", response_description="Get a single sudent by phone", response_model=ParentHome)
 def find_sudent_from_parent_id(parent_id: str, request: Request):
-    if (sudent := request.app.database[db_name].find({"parent": ObjectId(parent_id)})) is not None:
-        return sudent
+    if (students := request.app.database[db_name].find({"parent": ObjectId(parent_id)})) is not None:
+
+        return {'title':'parent1','childrens':students}
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with ID {phone} not found")
 
 @router.put("/{phone}", 
@@ -71,3 +72,4 @@ def delete_sudent(phone: str, request: Request, response: Response):
         return response
 
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"sudent with phone {phone} not found")
+
